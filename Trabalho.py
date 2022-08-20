@@ -47,7 +47,161 @@ if (opcao == '1'):
     print("9 - Country")
     print("10 - Phone")
     print("11 - Fax")
+    print("Escolha um campo a ser consultada:")
+    campo = input()
+    if(campo == "1"):
+        coluna = "CustomerID"
+        print("Digite um ID a ser pesquisado:")
+        id = input()
+
+        mycursor = mydb.cursor()
+
+        mycursor.execute(f'SELECT * FROM {tabela} where {coluna} like "%{id}%"')
+        myresult = mycursor.fetchall()
+
+        for registro in myresult:
+            print(registro)
+
+    if(campo == "2"):
+        coluna = "CompanyName"
+        print("Digite uma companhia para ser pesquisada")
+        companhia = input()
     
+        mycursor = mydb.cursor()
+
+        mycursor.execute(f'SELECT * FROM {tabela} where {coluna} like "%{companhia}%"')
+
+        myresult = mycursor.fetchall()
+
+        for registro in myresult:
+            print(registro)
+
+    if(campo == "3"):
+        coluna = "ContactName" 
+        print("Digite um nome a ser pesquisado")
+        nome = input()
+
+        mycursor = mydb.cursor()
+
+        mycursor.execute(f'SELECT * FROM {tabela} where {coluna} like "%{nome}%"')
+
+        myresult = mycursor.fetchall()
+
+        for registro in myresult:
+            print(registro)
+
+    if(campo == "4"):
+        coluna = "ContactTitle" 
+        print("Digite um título de contato a ser pesquisado")
+        t_cont = input()
+
+        mycursor = mydb.cursor()
+
+        mycursor.execute(f'SELECT * FROM {tabela} where {coluna} like "%{t_cont}%"')
+
+        myresult = mycursor.fetchall()
+
+        for registro in myresult:
+            print(registro)
+
+    if(campo == "5"):
+        coluna = "Address" 
+        print("Digite um endereço a ser pesquisado")
+        ender = input()
+
+        mycursor = mydb.cursor()
+
+        mycursor.execute(f'SELECT * FROM {tabela} where {coluna} like "%{ender}%"')
+
+        myresult = mycursor.fetchall()
+
+        for registro in myresult:
+            print(registro)
+
+    if(campo == "6"):
+        coluna = "City" 
+        print("Digite uma cidade a ser pesquisada")
+        cid = input()
+
+        mycursor = mydb.cursor()
+
+        mycursor.execute(f'SELECT * FROM {tabela} where {coluna} like "%{cid}%"')
+
+        myresult = mycursor.fetchall()
+
+        for registro in myresult:
+            print(registro)
+
+    if(campo == "7"):
+        coluna = "Region" 
+        print("Digite uma região a ser pesquisada")
+        regiao = input()
+
+        mycursor = mydb.cursor()
+
+        mycursor.execute(f'SELECT * FROM {tabela} where {coluna} like "%{regiao}%"')
+
+        myresult = mycursor.fetchall()
+
+        for registro in myresult:
+            print(registro)
+
+    if(campo == "8"):
+        coluna = "PostalCode" 
+        print("Digite um código postal a ser pesquisado")
+        cod_postal = input()
+
+        mycursor = mydb.cursor()
+
+        mycursor.execute(f'SELECT * FROM {tabela} where {coluna} like "%{cod_postal}%"')
+
+        myresult = mycursor.fetchall()
+
+        for registro in myresult:
+            print(registro)
+
+    if(campo == "9"):
+        coluna = "Country" 
+        print("Digite um país a ser pesquisado")
+        pais = input()
+
+        mycursor = mydb.cursor()
+
+        mycursor.execute(f'SELECT * FROM {tabela} where {coluna} like "%{pais}%"')
+
+        myresult = mycursor.fetchall()
+
+        for registro in myresult:
+            print(registro)
+
+    if(campo == "10"):
+        coluna = "Phone" 
+        print("Digite um telefone a ser pesquisado")
+        phone = input()
+
+        mycursor = mydb.cursor()
+
+        mycursor.execute(f'SELECT * FROM {tabela} where {coluna} like "%{phone}%"')
+
+        myresult = mycursor.fetchall()
+
+        for registro in myresult:
+            print(registro)
+
+    if(campo == "11"):
+        coluna = "Fax" 
+        print("Digite um fax a ser pesquisado")
+        fax = input()
+
+        mycursor = mydb.cursor()
+
+        mycursor.execute(f'SELECT * FROM {tabela} where {coluna} like "%{fax}%"')
+
+        myresult = mycursor.fetchall()
+
+        for registro in myresult:
+            print(registro)
+
 
 if (opcao == '2'):
     tabela = "Employees"
@@ -78,14 +232,3 @@ if (opcao == '6'):
     coluna = "CompanyName"
     print("Digite um nome a ser pesquisado:")
     nome = input()
-
-
-mycursor = mydb.cursor()
-
-
-mycursor.execute(f'SELECT * FROM {tabela} where {coluna} like "%{nome}%"')
-
-myresult = mycursor.fetchall()
-
-for registro in myresult:
-    print(registro)
