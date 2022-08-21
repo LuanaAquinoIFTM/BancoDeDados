@@ -7,11 +7,17 @@ mydb = mysql.connector.connect(
     database="northwind"
 )
 
+cont = 1
 mycursor = mydb.cursor()
 
 mycursor.execute(f'SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = "BASE TABLE" AND TABLE_SCHEMA="northwind"')
-
+myresult = []
 myresult = mycursor.fetchall()
 
+print("-------------------------TABELAS--------------------------")
 for registro in myresult:
-    print(f'{registro[0]}')
+    
+    print("|", cont, "- " f'{registro[0]} ')
+    
+    cont = cont + 1
+print("----------------------------------------------------------")

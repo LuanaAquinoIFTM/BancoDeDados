@@ -15,40 +15,117 @@ mydb = mysql.connector.connect(
     database = "northwind"
 
 )
-print("-------------------------TABELAS-------------------------")
-print("| 1 - Customers (Clientes)                              |")
-print("| 2 - Employees (Empregados)                            |")
-print("| 3 - Orders (Compras)                                  |")
-print("| 4 - Suppliers (Fornecerdores)                         |")
-print("| 5 - Products (Produtos)                               |")
-print("| 6 - Shippers (Carregadores)                           |")
-print("| 7 - Categories (Categorias)                           |")
-print("| 8 - CustomerCustomerDemo (ClienteClienteDemo)         |")
-print("| 9 - CustomerDemographics (DadosDemográficosDoCliente) |")
-print("| 10 - Order Details (Detalhes do Pedido)               |")
-print("| 11 - EmployeeTerritories (TerritóriosDoFuncionário)   |")
-print("| 12 - Region (Região)                                  |")
-print("| 13 - Territories (Territórios)                        |")
-print("---------------------------------------------------------")
-print("Escolha uma tabela a ser consultada:")
+cont = 1
+mycursor = mydb.cursor()
 
+mycursor.execute(f'SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = "BASE TABLE" AND TABLE_SCHEMA="northwind"')
+myresult = []
+myresult = mycursor.fetchall()
+
+print("-------------------------TABELAS--------------------------")
+for registro in myresult:
+    
+    print("|", cont, "- " f'{registro[0]} ')
+    
+    cont = cont + 1
+print("----------------------------------------------------------")
+print("Escolha uma tabela a ser consultada: ")
 
 opcao = input()
 if (opcao == '1'):
-    tabela = "Customers"
-    print("1 - CustomerID")
-    print("2 - CompanyName")
-    print("3 - ContactName")
-    print("4 - ContactTitle")
-    print("5 - Address")
-    print("6 - City")
-    print("7 - Region")
-    print("8 - PostalCode")
-    print("9 - Country")
-    print("10 - Phone")
-    print("11 - Fax")
-    print("Escolha um campo a ser consultada:")
+    tabela = "Categories"
+    i = 1
+    mycursor = mydb.cursor()
+
+    mycursor.execute(f'SELECT column_name FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = "Categories" and table_schema = "northwind"')
+    myresult = [i]
+    myresult = mycursor.fetchall()
+
+    for registro in myresult:
+        print(i, "- " f'{registro[0]}')
+        i = i + 1
+    print("Digite uma opção: ")
     campo = input()
+
+    if(campo == "1"):
+        coluna = "CategoryID"
+        print("Digite um ID a ser pesquisado: ")
+        id_cat = input()
+
+        mycursor = mydb.cursor()
+
+        mycursor.execute(f'SELECT * FROM {tabela} where {coluna} like "%{id_cat}%"')
+        myresult = mycursor.fetchall()
+
+        for registro in myresult:
+            print(registro)
+    
+    if(campo == "2"):
+        coluna = "CategoryName"
+        print("Digite um nome a ser pesquisado: ")
+        nome_cat = input()
+
+        mycursor = mydb.cursor()
+
+        mycursor.execute(f'SELECT * FROM {tabela} where {coluna} like "%{nome_cat}%"')
+        myresult = mycursor.fetchall()
+
+        for registro in myresult:
+            print(registro)
+
+    if(campo == "3"):
+        coluna = "Description"
+        print("Digite uma descrição a ser pesquisada: ")
+        desc = input()
+
+        mycursor = mydb.cursor()
+
+        mycursor.execute(f'SELECT * FROM {tabela} where {coluna} like "%{desc}%"')
+        myresult = mycursor.fetchall()
+
+        for registro in myresult:
+            print(registro)   
+
+    if(campo == "4"):
+        coluna = "Picture"
+        print("Digite uma foto a ser pesquisada: ")
+        pic = input()
+
+        mycursor = mydb.cursor()
+
+        mycursor.execute(f'SELECT * FROM {tabela} where {coluna} like "%{pic}%"')
+        myresult = mycursor.fetchall()
+
+        for registro in myresult:
+            print(registro)       
+
+if (opcao == '2'):
+    tabela = "Employees"
+    coluna = "FirstName"
+    print("Digite um nome a ser pesquisado:")
+    nome = input()
+
+if (opcao == '3'):
+    tabela = "Orders"
+    coluna = "OrderID"
+    print("Digite o id da compra ser pesquisado:")
+    nome = input()
+
+if (opcao == '4'):
+    tabela = "Customers"
+    i = 1
+    mycursor = mydb.cursor()
+
+    mycursor.execute(f'SELECT column_name FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = "Customers" and table_schema = "northwind"')
+    myresult = [i]
+    myresult = mycursor.fetchall()
+
+    for registro in myresult:
+        print(i, "- " f'{registro[0]}')
+        i = i + 1
+    print("Digite alguma opção: ")    
+    campo = input()
+
     if(campo == "1"):
         coluna = "CustomerID"
         print("Digite um ID a ser pesquisado:")
@@ -201,25 +278,6 @@ if (opcao == '1'):
 
         for registro in myresult:
             print(registro)
-
-
-if (opcao == '2'):
-    tabela = "Employees"
-    coluna = "FirstName"
-    print("Digite um nome a ser pesquisado:")
-    nome = input()
-
-if (opcao == '3'):
-    tabela = "Orders"
-    coluna = "OrderID"
-    print("Digite o id da compra ser pesquisado:")
-    nome = input()
-
-if (opcao == '4'):
-    tabela = "Suppliers"  
-    coluna = "ContactName"
-    print("Digite um nome a ser pesquisado:")
-    nome = input()
 
 if (opcao == '5'):
     tabela = "Products"

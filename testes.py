@@ -7,10 +7,15 @@ mydb = mysql.connector.connect(
     database="northwind"
 )
 
+i = 1
 mycursor = mydb.cursor()
 
-mycursor.execute(f'SELECT  FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = "Customers" and table_schema = "northwind"')
+mycursor.execute(f'SELECT column_name FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = "Customers" and table_schema = "northwind"')
+myresult = [i]
 myresult = mycursor.fetchall()
 
 for registro in myresult:
-    print(f'{registro[0]}')
+    print(i, "- " f'{registro[0]}')
+    
+    i = i + 1
+   
